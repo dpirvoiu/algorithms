@@ -33,6 +33,7 @@ class LinkedList {
     this.length++;
     return this;
   }
+
   pop() {
     if (!this.head) return undefined; // Case 1
     // Case 2  + 3
