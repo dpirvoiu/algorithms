@@ -15,18 +15,16 @@ class LinkedList {
   }
 
   insert(index, value) {
-    if (index < 0 || index > this.length) return undefined
+    if(index === 0) return this.unshift(value);
+    if(index === this.length) return this.push(value);
+    if(index < 0 || index > this.length) return false;
 
-    let temp = this.head;
-    let prev = temp;
+    const newNode = new Node(value);
+    const temp = this.get(index - 1);
 
-    for (let i = 0; i < this.length; i++) {
-      if (temp.next) {
-        prev = temp
-        temp = temp.next
-      }
-    }
-
-    prev.next = value;
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++
+    return true
   }
 }
