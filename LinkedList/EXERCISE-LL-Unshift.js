@@ -60,51 +60,65 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.head) return undefined; // Case 1
-    // Case 2  + 3
+    if (this.length === 0) return undefined;
     let temp = this.head;
     let pre = this.head;
     while (temp.next) {
       pre = temp;
-      temp = temp.next
+      temp = temp.next;
     }
     this.tail = pre;
     this.tail.next = null;
     this.length--;
-
-    if (this.length === 0) { // Case 3
+    if (this.length === 0) {
       this.head = null;
       this.tail = null;
     }
-    return temp
+    return temp;
   }
+
+  unshift(value) {
+    let newNode = new Node(value);
+// case 1 Empty List
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      // case two add item at the start
+
+      newNode.next = this.head; // move the head backwards to the newly created node
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
 }
 
 
 function test() {
-  let myLinkedList = new LinkedList(1);
-  myLinkedList.push(2);
+  let myLinkedList = new LinkedList(2);
+  myLinkedList.push(3);
 
-  // (2) Items in LL - Returns 2 Node
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
-  } else {
-    console.log("null");
-  }
+  console.log("Before unshift():");
+  console.log("-----------------");
+  myLinkedList.getHead();
+  myLinkedList.getTail();
+  myLinkedList.getLength();
 
-  // (1) Item in LL - Returns 1 Node
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
-  } else {
-    console.log("null");
-  }
+  console.log("\nLinked List:");
+  myLinkedList.printList();
 
-  // (0) Items in LL - Returns null
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
-  } else {
-    console.log("null");
-  }
+  myLinkedList.unshift(1);
+
+  console.log("\nAfter unshift():");
+  console.log("----------------");
+  myLinkedList.getHead();
+  myLinkedList.getTail();
+  myLinkedList.getLength();
+
+  console.log("\nLinked List:");
+  myLinkedList.printList();
 }
 
 
@@ -113,9 +127,29 @@ test();
 
 /*
     EXPECTED OUTPUT:
-    ----------------
+
+    Before unshift():
+    -----------------
+    Head: 2
+    Tail: 3
+    Length: 2
+
+    Linked List:
     2
+    3
+
+    After unshift():
+    ----------------
+    Head: 1
+    Tail: 3
+    Length: 3
+
+    Linked List:
     1
-    null
+    2
+    3
 
 */
+
+
+ 

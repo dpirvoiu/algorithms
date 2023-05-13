@@ -60,20 +60,46 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.head) return undefined; // Case 1
-    // Case 2  + 3
+    if (this.length === 0) return undefined;
     let temp = this.head;
     let pre = this.head;
     while (temp.next) {
       pre = temp;
-      temp = temp.next
+      temp = temp.next;
     }
     this.tail = pre;
     this.tail.next = null;
     this.length--;
-
-    if (this.length === 0) { // Case 3
+    if (this.length === 0) {
       this.head = null;
+      this.tail = null;
+    }
+    return temp;
+  }
+
+  unshift(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    let temp = this.head;
+    this.head = this.head.next;
+    temp.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      // we will need to point the tail to null if we have only one item;
       this.tail = null;
     }
     return temp
@@ -82,26 +108,26 @@ class LinkedList {
 
 
 function test() {
-  let myLinkedList = new LinkedList(1);
-  myLinkedList.push(2);
+  let myLinkedList = new LinkedList(2)
+  myLinkedList.push(1)
 
   // (2) Items in LL - Returns 2 Node
   if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
+    console.log(myLinkedList.shift().value);
   } else {
     console.log("null");
   }
 
   // (1) Item in LL - Returns 1 Node
   if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
+    console.log(myLinkedList.shift().value);
   } else {
     console.log("null");
   }
 
   // (0) Items in LL - Returns null
   if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.pop().value);
+    console.log(myLinkedList.shift().value);
   } else {
     console.log("null");
   }

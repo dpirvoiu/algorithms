@@ -51,6 +51,7 @@ class LinkedList {
       this.head = null;
       this.tail = null;
     }
+    return temp
   }
 }
 
