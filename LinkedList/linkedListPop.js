@@ -58,5 +58,4 @@ let myLinkedList = new LinkedList(4)
 myLinkedList.push(5);
 console.log(myLinkedList)
 
-myLinkedList.pop()
-console.log(myLinkedList)
+console.log(myLinkedList.pop().value)
