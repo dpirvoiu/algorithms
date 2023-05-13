@@ -1,4 +1,4 @@
-// O(n), we have to iterate throught the list and set the tail to the Node before the current tail
+// O(n), we have to iterate trought the list and set the tail to the Node before the current tail
 
 // You Have 3 Edge cases
 // 1 Empty linked list -> Cannot pop
