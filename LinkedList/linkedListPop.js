@@ -37,6 +37,8 @@ class LinkedList {
   pop() {
     if (!this.head) return undefined; // Case 1
     // Case 2  + 3
+
+    // double iteration
     let temp = this.head;
     let pre = this.head;
     while (temp.next) {
@@ -45,7 +47,7 @@ class LinkedList {
     }
     this.tail = pre;
     this.tail.next = null;
-    this.length--;
+    this.length--; // if we have one node, this would become 0
 
     if (this.length === 0) { // Case 3
       this.head = null;

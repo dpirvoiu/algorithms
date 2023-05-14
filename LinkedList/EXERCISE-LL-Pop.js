@@ -60,26 +60,25 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.head) return undefined; // Case 1
+    if (!this.head) return undefined; // Empty List
     // Case 2  + 3
-    let temp = this.head;
-    let pre = this.head;
+    let temp = this.head; // goes to last node
+    let pre = this.head; // goes to second to last
     while (temp.next) {
       pre = temp;
       temp = temp.next
     }
-    this.tail = pre;
-    this.tail.next = null;
+    this.tail = pre; // set tail to pre
+    this.tail.next = null; // cut off the last node(next)
     this.length--;
 
-    if (this.length === 0) { // Case 3
+    if (this.length === 0) { // Case for 1 item in list
       this.head = null;
       this.tail = null;
     }
     return temp
   }
 }
-
 
 function test() {
   let myLinkedList = new LinkedList(1);
