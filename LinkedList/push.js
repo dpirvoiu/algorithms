@@ -7,8 +7,7 @@ class Node {
 
 class LinkedList {
   constructor(value) {
-    const newNode = new Node(value);
-    this.head = newNode;
+    this.head = new Node(value);
     this.tail = this.head;
     this.length = 1;
   }
@@ -27,6 +26,37 @@ class LinkedList {
     } else {
       console.log("Head: " + this.head.value);
     }
+  }
+
+  shift() {
+    if (!this.head) return undefined
+    let tempHead = this.head;
+    this.head = this.head.next;
+    tempHead.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null
+    }
+    return tempHead
+  }
+
+  get(index) {
+    if (index < 0 || index > this.length) return undefined
+
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      temp = temp.next
+    }
+    return temp
+  }
+
+  set(index, value){
+    let temp = this.get(index)
+    if(temp){
+      temp.value = value;
+      return true
+    }
+    return false;
   }
 
   getTail() {
