@@ -14,29 +14,29 @@ class LinkedList {
     this.length = 1;
   }
 
-  insert(index, value){
-    let newNode = new Node(value)
-    if(index === 0) {
+  insert(index, value) {
+    let newNode = new Node(value);
+    if (index === 0) {
       return this.unshift(value);
     }
 
-    if(index === this.length){
+    if (index === this.length) {
       return this.push(value);
     }
 
-    if(index < 0 || index > this.length){
-      return false
+    if (index < 0 || index > this.length) {
+      return false;
     }
-    let temp = this.get(index -1);
+
+    let temp = this.get(index - 1);
     newNode.next = temp.next;
     temp.next = newNode;
     this.length++;
-    return true
+    return true;
   }
 
   set(index, value) {
     if (index < 0 || index > this.length) return undefined;
-
 
     // you can also use the "get" method here
     let temp = this.head;
@@ -46,12 +46,29 @@ class LinkedList {
 
     if (temp) {
       temp.value = value;
-      return true // we will need the code to stop running.
+      return true; // we will need the code to stop running.
     }
     return false;
   }
 
-  remove(){
+  remove(index) {
+    if (index === 0) {
+      return this.shift(index)
+    }
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
 
+    let before = this.get(index - 1);
+    let temp = before.next;
+
+    before.next = temp.next;
+    temp.next = null;
+
+    this.length--;
+    return temp
   }
 }
