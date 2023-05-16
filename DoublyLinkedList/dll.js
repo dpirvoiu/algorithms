@@ -89,4 +89,14 @@ class DoublyLinkedList {
     }
   }
 
+  set(index, value) {
+    if (index < 0 || index > this.length) return undefined;
+    let node = this.get(index);
+    if (node) {
+      node.value = value;
+      return true
+    }
+    return false;
+  }
+
 }
