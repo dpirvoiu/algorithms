@@ -43,19 +43,38 @@ class DoublyLinkedList {
     }
   }
 
-  unshift(value){
+  unshift(value) {
     let newNode = new Node(value);
-    if(!this.head){
+    if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
-    }else{
+    } else {
       newNode.next = this.head;
       this.head.prev = newNode;
       this.head = newNode;
     }
     this.length++;
-
   }
 
+  shift() {
+    if (!this.head) return undefined;
+    let temp = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = null;
+    }
+    this.length--;
+    return temp;
+  }
+
+  get(index) {
+    if (index < 0 || index > this.length) return undefined;
+
+
+  }
 
 }
