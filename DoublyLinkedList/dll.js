@@ -72,9 +72,21 @@ class DoublyLinkedList {
   }
 
   get(index) {
-    if (index < 0 || index > this.length) return undefined;
+    if (index < 0 || index >= this.length) return undefined;
 
-
+    if (index < this.length / 2) {
+      let temp = this.head;
+      for (let i = 0; i < index; i++) {
+        temp = temp.next;
+      }
+      return temp;
+    } else {
+      let temp = this.tail;
+      for (let i = this.length - 1; i > index / 2; i--) {
+        temp = temp.prev;
+      }
+      return temp;
+    }
   }
 
 }
